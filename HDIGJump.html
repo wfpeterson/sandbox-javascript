@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>HDIG Jump Page</title>
+	<script type="text/javascript">
+		function gethttpPrefix(rbutton){
+			if(rbutton[0].checked)
+				return "http://";
+			if(rbutton[1].checked)
+				return "https://";
+		}
+		function gethttpSuffix(rbutton){
+			if(rbutton[0].checked)
+				return ":8080/HDIGManagementWebApp/ViewHDIGStats.jsp";
+			if(rbutton[1].checked)
+				return "/Vix/ssl/JavaLogs.jsp";
+		}
+        function handleClick() {
+            var hdigApp = document.getElementsByName('hdigPage');
+            var hdigName = document.getElementsByName('hdigName').item(0).value;
+            var httpPrefix = gethttpPrefix(hdigApp);
+		    var httpSuffix = gethttpSuffix(hdigApp);
+		    var hdigLink = httpPrefix + hdigName + httpSuffix;
+		
+            window.open(hdigLink);
+		    event.preventDefault();
+		    return false;
+		}
+	</script>
+</head>
+<body>
+
+<form action="" onSubmit="handleClick()">
+VIX/HDIG Hostname: <input type="text" size="45" name="hdigName"><br>
+<br>
+<input type="radio" id="hdigPageStats" name="hdigPage" value="Statistics">Statistics<br>
+<input type="radio" id="hdigPageLogs" name="hdigPage" value="Logs">Logs<br>
+<br>
+<input type="submit" value="Get Page">
+
+</form>
+
+</body>
+</html>
